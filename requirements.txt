@@ -1,0 +1,5 @@
+asgiref==3.8.1
+Django==3.2
+pillow==11.1.0
+pytz==2025.1
+typing_extensions==4.12.2

@@ -1,0 +1,14 @@
+{% extends 'world_cup/base.html' %}
+
+{% block title %}Register Rider{% endblock %}
+
+{% block content %}
+<div class="center-content">
+    <h1>Register a New Rider</h1>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Register Rider</button>
+    </form>
+</div>
+{% endblock %}

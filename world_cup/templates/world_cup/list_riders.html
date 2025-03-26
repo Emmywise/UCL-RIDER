@@ -1,0 +1,61 @@
+{% extends 'world_cup/base.html' %}
+
+{% block title %}Riders Grouped by Age Category and Team{% endblock %}
+
+{% block content %}
+<div class="center-content">
+<h1>Riders Grouped by Age Category and Team</h1>
+<div style="text-align: center; margin-bottom: 20px;">
+    <input type="text" id="search_input" placeholder="Search by name or team..." autocomplete="off" style="margin-right: 10px;">
+    <select id="age_category_select">
+        <option value="">Select Age Category</option>
+        <option value="">Under 12</option>
+        <option value="">Junior</option>
+        <option value="TR">Senior</option>
+    </select>
+</div>
+
+
+<ul id="rider_list_container">
+    {% for rider in riders %}
+    <li>
+        <a href="{% url 'rider_details' pk=rider.pk %}">{{ rider.first_name }} {{ rider.last_name }}</a> - {{ rider.team.name }}
+    </li>
+    {% empty %}
+    <p>No riders found.</p>
+    {% endfor %}
+</ul>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    function updateRidersList() {
+        var searchValue = $('#search_input').val();
+        var ageCategory = $('#age_category_select').val();
+        $.ajax({
+            url: '{% url "list_riders" %}',
+            data: {
+                'search': searchValue,
+                'age_category': ageCategory
+            },
+            type: 'get',
+            dataType: 'json',
+            success: function(data) {
+                var listContent = '';
+                if (data.length > 0) {
+                    data.forEach(function(rider) {
+                        listContent += '<li>' + rider.first_name + ' ' + rider.last_name + ' - ' + rider.team__name + ' (' + rider.age_category + ')</li>';
+                    });
+                } else {
+                    listContent = '<li>No results found.</li>';
+                }
+                $('#rider_list_container').html(listContent);
+            }
+        });
+    }
+
+    $(document).ready(function() {
+        $('#search_input, #age_category_select').on('input change', updateRidersList);
+    });
+</script>
+</div>
+{% endblock %}

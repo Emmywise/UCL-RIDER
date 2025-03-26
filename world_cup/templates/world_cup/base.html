@@ -1,0 +1,28 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}UCI Enduro World Cup Racers{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'world_cup/style.css' %}">
+</head>
+<body>
+    <header>
+        <h1>UCI Enduro World Cup Racers</h1>
+        <nav>
+            <a href="{% url 'list_riders' %}">List Riders</a> 
+            <a href="{% url 'qualifying_results' %}">Qualifying Results</a>
+            <a href="{% url 'race_order' %}">Race Day Order</a>
+            <a href="{% url 'podium_results' %}">Podium Results</a>
+            <a href="{% url 'register_rider' %}">Register Rider</a>
+        </nav>
+    </header>
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+    <footer>
+        <p>© 2025 UCI Enduro World Cup. All rights reserved.</p>
+    </footer>
+</body>
+</html>

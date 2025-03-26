@@ -1,0 +1,22 @@
+{% extends 'world_cup/base.html' %}
+
+{% block title %}Rider Details{% endblock %}
+
+{% block content %}
+<div class="center-content">
+
+    <h1>{{ object.first_name }} {{ object.last_name }}</h1>
+    <p>Age: {{ object.age }}</p>
+    <p>Team: {{ object.team.name }}</p>
+    {% if object.photo %}
+        <img src="{{ object.photo.url }}" alt="Photo of {{ object.first_name }}"  style="width: 100px; height: 125px;">
+    {% endif %}
+    <h2>Race Results</h2>
+    <ul>
+        {% for result in race_results %}
+            <li>{{ result.race_date }} - Qualifying: {{ result.qualifying_time }}s, Main Race: {{ result.main_race_time }}s</li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'list_riders' %}">Back to Rider List</a>
+</div>
+{% endblock %}

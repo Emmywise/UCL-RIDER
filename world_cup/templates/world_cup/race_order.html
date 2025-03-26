@@ -1,0 +1,15 @@
+{% extends 'world_cup/base.html' %}
+
+{% block title %}Race Day Start Order{% endblock %}
+
+{% block content %}
+<div class="center-content">
+
+    <h1>Race Day Start Order</h1>
+    <ul>
+        {% for result in object_list %}
+            <li>{{ result.rider.first_name }} {{ result.rider.last_name }} starts at position {{ forloop.revcounter }}</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends 'world_cup/base.html' %}
+
+{% block title %}Qualifying Results - UCI Enduro World Cup Racers{% endblock %}
+
+{% block content %}
+<div class="center-content">
+    <h2>Qualifying Results</h2>
+    <ul>
+        {% for result in object_list %}
+            <li>{{ result.rider.first_name }} {{ result.rider.last_name }} - {{ result.qualifying_time }} seconds</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}

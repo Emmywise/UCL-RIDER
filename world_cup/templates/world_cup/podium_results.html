@@ -1,0 +1,23 @@
+{% extends 'world_cup/base.html' %}
+
+{% block title %}Podium Results by Age Category{% endblock %}
+
+{% block content %}
+<div class="center-content">
+
+    <h1>Podium Results by Age Category</h1>
+    {% for category_name, results in categories.items %}
+        <h2>{{ category_name }}</h2>
+        <ul>
+            {% for result in results %}
+                <li>🏅 {{ forloop.counter }}: {{ result.rider.first_name }} {{ result.rider.last_name }} - {{ result.main_race_time }} seconds</li>
+            {% empty %}
+                <li>No results for this category.</li>
+            {% endfor %}
+        </ul>
+    {% empty %}
+        <p>No categories found.</p>
+    {% endfor %}
+</div>
+
+{% endblock %}
