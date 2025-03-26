@@ -13,22 +13,28 @@
 Set up a Python Virtual Environment
 python -m env env
 
-**Install Dependencies**
+## install Dependencies**
 pip install -r requirements.txt
 
 
-**Initialize the Database**
+## Initialize the Database
 python manage.py makemigrations
 python manage.py migrate
 
-**create super user to have access to all CRUD**
+## create super user to have access to all CRUD
 Create an Admin User
 python manage.py createsuperuser
 USE THE DJANGO ADMIN TO HAVE ACCESS TO ALL THE NEEDED DATA
 
-**Run the Development Server**
-python manage.py runserver
+## Run the Development Server**
+docker-compose build   
+docker-compose up
 Visit http://127.0.0.1:8000/rider/ in your web browser.
+
+## create super user to have access to all CRUD
+Create an Admin User
+python manage.py createsuperuser
+USE THE DJANGO ADMIN TO HAVE ACCESS TO ALL THE NEEDED DATA
 
 Usage
 The project includes several URL routes that provide access to its features:
